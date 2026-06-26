@@ -46,15 +46,6 @@ const ChineseKnotSVG = () => (
   </svg>
 );
 
-const UsersSVG = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </svg>
-);
-
 const CalendarSVG = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -127,11 +118,9 @@ const StylizedCloudSVG = ({ className }: { className: string }) => (
 const translations = {
   FR: {
     accueil: 'Accueil',
-    apropos: 'À propos',
     cours: 'Cours de chinois',
-    activites: 'Activités culturelles',
-    actualites: 'Actualités',
-    adhesion: 'Adhésion',
+    evenements: 'Événements',
+    inscription: 'Inscription',
     contact: 'Contact',
     register: "Je m'inscris",
     langLabel: 'Langue :',
@@ -147,11 +136,9 @@ const translations = {
   },
   ZH: {
     accueil: '首页',
-    apropos: '关于我们',
     cours: '中文课程',
-    activites: '文化活动',
-    actualites: '新闻动态',
-    adhesion: '加入协会',
+    evenements: '精彩活动',
+    inscription: '注册报名',
     contact: '联系我们',
     register: '立即报名',
     langLabel: '语言：',
@@ -167,11 +154,9 @@ const translations = {
   },
   EN: {
     accueil: 'Home',
-    apropos: 'About Us',
     cours: 'Chinese Courses',
-    activites: 'Cultural Activities',
-    actualites: 'News',
-    adhesion: 'Membership',
+    evenements: 'Events',
+    inscription: 'Registration',
     contact: 'Contact',
     register: 'Sign Up',
     langLabel: 'Language:',
@@ -222,11 +207,9 @@ function App() {
 
   const navigationItems = [
     { id: 'accueil', label: t.accueil, href: '#accueil' },
-    { id: 'apropos', label: t.apropos, href: '#apropos' },
-    { id: 'cours', label: t.cours, href: '#cours' },
-    { id: 'activites', label: t.activites, href: '#activites' },
-    { id: 'actualites', label: t.actualites, href: '#actualites' },
-    { id: 'adhesion', label: t.adhesion, href: '#adhesion' },
+    { id: 'cours', label: t.cours, href: '#features' },
+    { id: 'evenements', label: t.evenements, href: '#features' },
+    { id: 'inscription', label: t.inscription, href: '#features' },
     { id: 'contact', label: t.contact, href: '#contact' },
   ];
 
@@ -362,6 +345,7 @@ function App() {
         </div>
       </section>
 
+      {/* Simplified Features Grid (3 elements: Courses, Events, Registration) */}
       <section className="features-section" id="features">
         <div className="container">
           <div className="features-grid">
@@ -373,33 +357,7 @@ function App() {
               <p className="feature-desc">
                 {md.features[0]?.description}
               </p>
-              <a href="#cours" className="feature-link" id="card-link-courses">
-                {t.learnMore} <ArrowRightSVG />
-              </a>
-            </div>
-
-            <div className="feature-card" id="feature-card-activities">
-              <div className="feature-icon-wrapper">
-                <ChineseKnotSVG />
-              </div>
-              <h3 className="feature-title">{md.features[1]?.title || t.activites}</h3>
-              <p className="feature-desc">
-                {md.features[1]?.description}
-              </p>
-              <a href="#activites" className="feature-link" id="card-link-activities">
-                {t.learnMore} <ArrowRightSVG />
-              </a>
-            </div>
-
-            <div className="feature-card" id="feature-card-sharing">
-              <div className="feature-icon-wrapper">
-                <UsersSVG />
-              </div>
-              <h3 className="feature-title">{md.features[2]?.title}</h3>
-              <p className="feature-desc">
-                {md.features[2]?.description}
-              </p>
-              <a href="#partage" className="feature-link" id="card-link-sharing">
+              <a href="#features" className="feature-link" id="card-link-courses">
                 {t.learnMore} <ArrowRightSVG />
               </a>
             </div>
@@ -408,11 +366,24 @@ function App() {
               <div className="feature-icon-wrapper">
                 <CalendarSVG />
               </div>
-              <h3 className="feature-title">{md.features[3]?.title}</h3>
+              <h3 className="feature-title">{md.features[1]?.title || t.evenements}</h3>
               <p className="feature-desc">
-                {md.features[3]?.description}
+                {md.features[1]?.description}
               </p>
-              <a href="#actualites" className="feature-link" id="card-link-events">
+              <a href="#features" className="feature-link" id="card-link-events">
+                {t.learnMore} <ArrowRightSVG />
+              </a>
+            </div>
+
+            <div className="feature-card" id="feature-card-registration">
+              <div className="feature-icon-wrapper">
+                <ProfileSVG />
+              </div>
+              <h3 className="feature-title">{md.features[2]?.title || t.inscription}</h3>
+              <p className="feature-desc">
+                {md.features[2]?.description}
+              </p>
+              <a href="#features" className="feature-link" id="card-link-registration">
                 {t.learnMore} <ArrowRightSVG />
               </a>
             </div>
@@ -462,9 +433,9 @@ function App() {
             <h4>{t.footerLinks}</h4>
             <ul>
               <li><a href="#accueil" id="footer-link-accueil">{t.accueil}</a></li>
-              <li><a href="#apropos" id="footer-link-apropos">{t.apropos}</a></li>
-              <li><a href="#cours" id="footer-link-cours">{t.cours}</a></li>
-              <li><a href="#activites" id="footer-link-activites">{t.activites}</a></li>
+              <li><a href="#features" id="footer-link-cours">{t.cours}</a></li>
+              <li><a href="#features" id="footer-link-evenements">{t.evenements}</a></li>
+              <li><a href="#features" id="footer-link-registration">{t.inscription}</a></li>
             </ul>
           </div>
           <div className="footer-contact">

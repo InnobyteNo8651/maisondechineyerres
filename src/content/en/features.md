@@ -1,11 +1,8 @@
 # Chinese Courses
 Courses for children, teenagers, and adults of all levels.
 ---
-# Cultural Activities
-Workshops in calligraphy, tea ceremony, lion dance, music, martial arts...
----
-# Sharing & Exchanges
-Promoting cultural exchanges and mutual understanding between China and France.
----
 # Events
 Discover our upcoming events and join us!
+---
+# Registration
+How to register? Fill out our online registration form or contact us via email.
