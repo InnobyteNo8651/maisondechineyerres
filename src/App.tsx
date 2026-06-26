@@ -69,6 +69,21 @@ const ProfileSVG = () => (
   </svg>
 );
 
+const HamburgerSVG = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
+const CloseSVG = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
 const ChineseLanternSVG = () => (
   <svg className="deco-lantern" width="80" height="120" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="40" y1="0" x2="40" y2="20" stroke="var(--color-primary)" strokeWidth="2" />
@@ -97,6 +112,7 @@ const StylizedCloudSVG = ({ className }: { className: string }) => (
 function App() {
   const [activeTab, setActiveTab] = useState('accueil');
   const [lang, setLang] = useState('FR');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
     { id: 'accueil', label: 'Accueil', href: '#accueil' },
@@ -113,7 +129,12 @@ function App() {
       {/* Header */}
       <header className="site-header">
         <div className="container header-container">
-          <a href="#accueil" className="logo-link" id="header-logo-link">
+          <a 
+            href="#accueil" 
+            className="logo-link" 
+            id="header-logo-link"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             <LogoSVG />
             <div className="logo-text">
               Maison de Chine
@@ -121,8 +142,8 @@ function App() {
             </div>
           </a>
 
-          {/* Navigation Menu */}
-          <nav className="main-nav">
+          {/* Desktop Navigation */}
+          <nav className="desktop-nav">
             {navigationItems.map((item) => (
               <a
                 key={item.id}
@@ -136,7 +157,7 @@ function App() {
             ))}
           </nav>
 
-          <div className="header-actions">
+          <div className="desktop-actions">
             {/* Language Selector */}
             <div className="lang-selector" id="lang-selector-btn" tabIndex={0}>
               <span>{lang}</span>
@@ -150,6 +171,55 @@ function App() {
 
             {/* Crimson CTA button with profile icon */}
             <button className="btn btn-primary btn-sm" id="header-btn-register">
+              <ProfileSVG />
+              Je m'inscris
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle Button */}
+          <button 
+            className="mobile-menu-toggle" 
+            id="mobile-menu-toggle-btn"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <CloseSVG /> : <HamburgerSVG />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Drawer Overlay */}
+        <div className={`mobile-nav-overlay ${isMobileMenuOpen ? 'open' : ''}`} id="mobile-nav-menu">
+          <nav className="mobile-nav-links">
+            {navigationItems.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`mobile-nav-link ${activeTab === item.id ? 'active' : ''}`}
+                id={`mobile-nav-link-${item.id}`}
+                onClick={() => {
+                  setActiveTab(item.id);
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          
+          <div className="mobile-nav-actions">
+            {/* Language Selector */}
+            <div className="mobile-lang-selector" id="mobile-lang-selector-btn">
+              <div className="mobile-lang-label">Langue :</div>
+              <div className="mobile-lang-buttons">
+                <button className={`mobile-lang-btn ${lang === 'FR' ? 'active' : ''}`} id="mobile-lang-btn-fr" onClick={() => setLang('FR')}>FR</button>
+                <button className={`mobile-lang-btn ${lang === 'ZH' ? 'active' : ''}`} id="mobile-lang-btn-zh" onClick={() => setLang('ZH')}>ZH</button>
+                <button className={`mobile-lang-btn ${lang === 'EN' ? 'active' : ''}`} id="mobile-lang-btn-en" onClick={() => setLang('EN')}>EN</button>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <button className="btn btn-primary" id="mobile-btn-register" onClick={() => setIsMobileMenuOpen(false)}>
               <ProfileSVG />
               Je m'inscris
             </button>
@@ -215,7 +285,7 @@ function App() {
               </a>
             </div>
 
-            {/* Card 2: Activités culturelles */}
+            {/* Card 2: Activités cultureelles */}
             <div className="feature-card" id="feature-card-activities">
               <div className="feature-icon-wrapper">
                 <ChineseKnotSVG />
