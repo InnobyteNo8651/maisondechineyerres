@@ -31,6 +31,7 @@ pages:
     - npm run build
     - rm -rf public
     - mv dist public
+    - echo "GitLab Pages deployed successfully! View the page here: https://ggyax.gitlab.io/maison-chine-yerres/"
   artifacts:
     paths:
       - public
