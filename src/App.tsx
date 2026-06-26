@@ -4,6 +4,21 @@ import galleryClassroom from './assets/gallery_classroom.png';
 import galleryLionDance from './assets/gallery_lion_dance.png';
 import galleryTeaCeremony from './assets/gallery_tea_ceremony.png';
 
+// Import Markdown Raw Strings
+import heroFR from './content/fr/hero.md?raw';
+import aboutFR from './content/fr/about.md?raw';
+import featuresFR from './content/fr/features.md?raw';
+
+import heroZH from './content/zh/hero.md?raw';
+import aboutZH from './content/zh/about.md?raw';
+import featuresZH from './content/zh/features.md?raw';
+
+import heroEN from './content/en/hero.md?raw';
+import aboutEN from './content/en/about.md?raw';
+import featuresEN from './content/en/features.md?raw';
+
+import { parseHero, parseAbout, parseFeatures } from './utils/markdown';
+
 // SVGs
 const LogoSVG = () => (
   <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
@@ -109,24 +124,114 @@ const StylizedCloudSVG = ({ className }: { className: string }) => (
   </svg>
 );
 
+const translations = {
+  FR: {
+    accueil: 'Accueil',
+    apropos: 'À propos',
+    cours: 'Cours de chinois',
+    activites: 'Activités culturelles',
+    actualites: 'Actualités',
+    adhesion: 'Adhésion',
+    contact: 'Contact',
+    register: "Je m'inscris",
+    langLabel: 'Langue :',
+    discoverCourses: 'Découvrir nos cours',
+    discoverActivities: 'Découvrir nos activités',
+    learnMore: 'En savoir plus',
+    footerDesc: "Votre centre culturel d'échanges et d'apprentissage au cœur du Val d'Yerres.",
+    footerLinks: 'Liens rapides',
+    footerContact: 'Contact',
+    footerEmail: 'Courriel : contact@maisonchineyerres.fr',
+    footerLocation: 'Lieu : Val d\'Yerres, France',
+    footerRights: 'Tous droits réservés.'
+  },
+  ZH: {
+    accueil: '首页',
+    apropos: '关于我们',
+    cours: '中文课程',
+    activites: '文化活动',
+    actualites: '新闻动态',
+    adhesion: '加入协会',
+    contact: '联系我们',
+    register: '立即报名',
+    langLabel: '语言：',
+    discoverCourses: '探索中文课程',
+    discoverActivities: '探索文化活动',
+    learnMore: '了解更多',
+    footerDesc: '位于耶尔谷中心的文化交流与学习中心。',
+    footerLinks: '快速链接',
+    footerContact: '联系方式',
+    footerEmail: '邮箱：contact@maisonchineyerres.fr',
+    footerLocation: '地点：法国，耶尔谷',
+    footerRights: '保留所有权利。'
+  },
+  EN: {
+    accueil: 'Home',
+    apropos: 'About Us',
+    cours: 'Chinese Courses',
+    activites: 'Cultural Activities',
+    actualites: 'News',
+    adhesion: 'Membership',
+    contact: 'Contact',
+    register: 'Sign Up',
+    langLabel: 'Language:',
+    discoverCourses: 'Discover our courses',
+    discoverActivities: 'Discover our activities',
+    learnMore: 'Learn more',
+    footerDesc: 'Your cultural hub for learning and exchanges in the heart of Val d\'Yerres.',
+    footerLinks: 'Quick Links',
+    footerContact: 'Contact',
+    footerEmail: 'Email: contact@maisonchineyerres.fr',
+    footerLocation: 'Location: Val d\'Yerres, France',
+    footerRights: 'All rights reserved.'
+  }
+};
+
 function App() {
   const [activeTab, setActiveTab] = useState('accueil');
   const [lang, setLang] = useState('FR');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const t = translations[lang as 'FR' | 'ZH' | 'EN'] || translations.FR;
+
+  const getContent = (currentLang: string) => {
+    switch (currentLang) {
+      case 'ZH':
+        return {
+          hero: parseHero(heroZH),
+          about: parseAbout(aboutZH),
+          features: parseFeatures(featuresZH)
+        };
+      case 'EN':
+        return {
+          hero: parseHero(heroEN),
+          about: parseAbout(aboutEN),
+          features: parseFeatures(featuresEN)
+        };
+      case 'FR':
+      default:
+        return {
+          hero: parseHero(heroFR),
+          about: parseAbout(aboutFR),
+          features: parseFeatures(featuresFR)
+        };
+    }
+  };
+
+  const md = getContent(lang);
+
   const navigationItems = [
-    { id: 'accueil', label: 'Accueil', href: '#accueil' },
-    { id: 'apropos', label: 'À propos', href: '#apropos' },
-    { id: 'cours', label: 'Cours de chinois', href: '#cours' },
-    { id: 'activites', label: 'Activités culturelles', href: '#activites' },
-    { id: 'actualites', label: 'Actualités', href: '#actualites' },
-    { id: 'adhesion', label: 'Adhésion', href: '#adhesion' },
-    { id: 'contact', label: 'Contact', href: '#contact' },
+    { id: 'accueil', label: t.accueil, href: '#accueil' },
+    { id: 'apropos', label: t.apropos, href: '#apropos' },
+    { id: 'cours', label: t.cours, href: '#cours' },
+    { id: 'activites', label: t.activites, href: '#activites' },
+    { id: 'actualites', label: t.actualites, href: '#actualites' },
+    { id: 'adhesion', label: t.adhesion, href: '#adhesion' },
+    { id: 'contact', label: t.contact, href: '#contact' },
   ];
 
   return (
     <div className="site-wrapper">
-      {/* Header */}
       <header className="site-header">
         <div className="container header-container">
           <a 
@@ -142,7 +247,6 @@ function App() {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="desktop-nav">
             {navigationItems.map((item) => (
               <a
@@ -158,7 +262,6 @@ function App() {
           </nav>
 
           <div className="desktop-actions">
-            {/* Language Selector */}
             <div className="lang-selector" id="lang-selector-btn" tabIndex={0}>
               <span>{lang}</span>
               <ChevronDownSVG />
@@ -169,14 +272,12 @@ function App() {
               </div>
             </div>
 
-            {/* Crimson CTA button with profile icon */}
             <button className="btn btn-primary btn-sm" id="header-btn-register">
               <ProfileSVG />
-              Je m'inscris
+              {t.register}
             </button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
           <button 
             className="mobile-menu-toggle" 
             id="mobile-menu-toggle-btn"
@@ -188,7 +289,6 @@ function App() {
           </button>
         </div>
 
-        {/* Mobile Navigation Drawer Overlay */}
         <div className={`mobile-nav-overlay ${isMobileMenuOpen ? 'open' : ''}`} id="mobile-nav-menu">
           <nav className="mobile-nav-links">
             {navigationItems.map((item) => (
@@ -208,9 +308,8 @@ function App() {
           </nav>
           
           <div className="mobile-nav-actions">
-            {/* Language Selector */}
             <div className="mobile-lang-selector" id="mobile-lang-selector-btn">
-              <div className="mobile-lang-label">Langue :</div>
+              <div className="mobile-lang-label">{t.langLabel}</div>
               <div className="mobile-lang-buttons">
                 <button className={`mobile-lang-btn ${lang === 'FR' ? 'active' : ''}`} id="mobile-lang-btn-fr" onClick={() => setLang('FR')}>FR</button>
                 <button className={`mobile-lang-btn ${lang === 'ZH' ? 'active' : ''}`} id="mobile-lang-btn-zh" onClick={() => setLang('ZH')}>ZH</button>
@@ -218,37 +317,33 @@ function App() {
               </div>
             </div>
 
-            {/* CTA Button */}
             <button className="btn btn-primary" id="mobile-btn-register" onClick={() => setIsMobileMenuOpen(false)}>
               <ProfileSVG />
-              Je m'inscris
+              {t.register}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
       <section className="hero-section" id="accueil">
         <div className="container hero-container fade-in-up">
           <div className="hero-content">
-            <span className="hero-subtitle">Langue • Culture • Partage</span>
+            <span className="hero-subtitle">{md.hero.tagline}</span>
             <h1 className="hero-title" id="hero-main-title">
-              Maison de Chine
-              <span>de Val d'Yerres</span>
+              {md.hero.title}
+              <span>{md.hero.subtitle}</span>
             </h1>
             <p className="hero-description">
-              Une passerelle culturelle au cœur du Val d'Yerres. Rejoignez nos cours de langue chinoise 
-              et découvrez la richesse de nos activités traditionnelles dans une ambiance chaleureuse 
-              et conviviale.
+              {md.hero.description}
             </p>
             <div className="hero-buttons">
               <button className="btn btn-primary" id="hero-btn-courses">
                 <BookSVG />
-                Découvrir nos cours
+                {t.discoverCourses}
               </button>
               <button className="btn btn-secondary" id="hero-btn-activities">
                 <ChineseKnotSVG />
-                Découvrir nos activités
+                {t.discoverActivities}
               </button>
             </div>
           </div>
@@ -267,82 +362,74 @@ function App() {
         </div>
       </section>
 
-      {/* Grid of 4 Card Components */}
       <section className="features-section" id="features">
         <div className="container">
           <div className="features-grid">
-            {/* Card 1: Cours de chinois */}
             <div className="feature-card" id="feature-card-courses">
               <div className="feature-icon-wrapper">
                 <BookSVG />
               </div>
-              <h3 className="feature-title">Cours de chinois</h3>
+              <h3 className="feature-title">{md.features[0]?.title || t.cours}</h3>
               <p className="feature-desc">
-                Apprentissage du mandarin pour tous les âges et tous les niveaux, animé par des professeurs expérimentés.
+                {md.features[0]?.description}
               </p>
               <a href="#cours" className="feature-link" id="card-link-courses">
-                En savoir plus <ArrowRightSVG />
+                {t.learnMore} <ArrowRightSVG />
               </a>
             </div>
 
-            {/* Card 2: Activités cultureelles */}
             <div className="feature-card" id="feature-card-activities">
               <div className="feature-icon-wrapper">
                 <ChineseKnotSVG />
               </div>
-              <h3 className="feature-title">Activités culturelles</h3>
+              <h3 className="feature-title">{md.features[1]?.title || t.activites}</h3>
               <p className="feature-desc">
-                Calligraphie, cérémonie du thé, danse du lion, cuisine traditionnelle et bien d'autres ateliers captivants.
+                {md.features[1]?.description}
               </p>
               <a href="#activites" className="feature-link" id="card-link-activities">
-                Découvrir les ateliers <ArrowRightSVG />
+                {t.learnMore} <ArrowRightSVG />
               </a>
             </div>
 
-            {/* Card 3: Partage & Échanges */}
             <div className="feature-card" id="feature-card-sharing">
               <div className="feature-icon-wrapper">
                 <UsersSVG />
               </div>
-              <h3 className="feature-title">Partage & Échanges</h3>
+              <h3 className="feature-title">{md.features[2]?.title}</h3>
               <p className="feature-desc">
-                Rencontres interculturelles, tables de conversation linguistique et moments de convivialité partagés.
+                {md.features[2]?.description}
               </p>
               <a href="#partage" className="feature-link" id="card-link-sharing">
-                Rejoindre la communauté <ArrowRightSVG />
+                {t.learnMore} <ArrowRightSVG />
               </a>
             </div>
 
-            {/* Card 4: Événements */}
             <div className="feature-card" id="feature-card-events">
               <div className="feature-icon-wrapper">
                 <CalendarSVG />
               </div>
-              <h3 className="feature-title">Événements</h3>
+              <h3 className="feature-title">{md.features[3]?.title}</h3>
               <p className="feature-desc">
-                Célébrations du Nouvel An Chinois, festivals d'automne, conférences culturelles et expositions artistiques.
+                {md.features[3]?.description}
               </p>
               <a href="#actualites" className="feature-link" id="card-link-events">
-                Voir l'agenda <ArrowRightSVG />
+                {t.learnMore} <ArrowRightSVG />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Us Section */}
       <section className="about-section" id="apropos">
         <ChineseLanternSVG />
         <div className="container about-container">
           <div className="about-content fade-in-up">
-            <h2 className="about-title" id="about-section-title">À propos de nous</h2>
+            <h2 className="about-title" id="about-section-title">{md.about.title}</h2>
             <p className="about-text">
-              Fondée avec la passion du partage et de la découverte, la Maison de Chine de Val d'Yerres 
-              propose des programmes éducatifs et des ateliers culturels pour favoriser le rapprochement 
-              et l'échange interculturel.
+              {md.about.description}
             </p>
             <button className="btn btn-outline-white" id="about-btn-learn-more">
-              En savoir plus
+              {t.learnMore}
             </button>
           </div>
 
@@ -363,32 +450,31 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="site-footer" id="contact">
         <div className="container footer-content">
           <div className="footer-brand">
-            <h3>Maison de Chine de Val d'Yerres</h3>
+            <h3>{md.hero.title} {md.hero.subtitle}</h3>
             <p>
-              Votre centre culturel d'échanges et d'apprentissage au cœur du Val d'Yerres.
+              {t.footerDesc}
             </p>
           </div>
           <div className="footer-links">
-            <h4>Liens rapides</h4>
+            <h4>{t.footerLinks}</h4>
             <ul>
-              <li><a href="#accueil" id="footer-link-accueil">Accueil</a></li>
-              <li><a href="#apropos" id="footer-link-apropos">À propos</a></li>
-              <li><a href="#cours" id="footer-link-cours">Cours de chinois</a></li>
-              <li><a href="#activites" id="footer-link-activites">Activités culturelles</a></li>
+              <li><a href="#accueil" id="footer-link-accueil">{t.accueil}</a></li>
+              <li><a href="#apropos" id="footer-link-apropos">{t.apropos}</a></li>
+              <li><a href="#cours" id="footer-link-cours">{t.cours}</a></li>
+              <li><a href="#activites" id="footer-link-activites">{t.activites}</a></li>
             </ul>
           </div>
           <div className="footer-contact">
-            <h4>Contact</h4>
-            <p>Courriel : contact@maisonchineyerres.fr</p>
-            <p>Lieu : Val d'Yerres, France</p>
+            <h4>{t.footerContact}</h4>
+            <p>{t.footerEmail}</p>
+            <p>{t.footerLocation}</p>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Maison de Chine de Val d'Yerres. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} {md.hero.title} {md.hero.subtitle}. {t.footerRights}</p>
         </div>
       </footer>
     </div>

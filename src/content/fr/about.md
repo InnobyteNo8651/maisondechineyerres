@@ -1,0 +1,2 @@
+# À propos de nous
+Maison de Chine de Val d'Yerres est une association loi 1901 à but non lucratif, dédiée à la promotion de la langue chinoise et de la culture chinoise, ainsi qu'au renforcement des liens entre les cultures chinoise et française.
