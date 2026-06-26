@@ -17,7 +17,11 @@ import heroEN from './content/en/hero.md?raw';
 import aboutEN from './content/en/about.md?raw';
 import featuresEN from './content/en/features.md?raw';
 
-import { parseHero, parseAbout, parseFeatures } from './utils/markdown';
+import contactFR from './content/fr/contact.md?raw';
+import contactZH from './content/zh/contact.md?raw';
+import contactEN from './content/en/contact.md?raw';
+
+import { parseHero, parseAbout, parseFeatures, parseContact } from './utils/markdown';
 
 // SVGs
 const LogoSVG = () => (
@@ -185,20 +189,23 @@ function App() {
         return {
           hero: parseHero(heroZH),
           about: parseAbout(aboutZH),
-          features: parseFeatures(featuresZH)
+          features: parseFeatures(featuresZH),
+          contact: parseContact(contactZH)
         };
       case 'EN':
         return {
           hero: parseHero(heroEN),
           about: parseAbout(aboutEN),
-          features: parseFeatures(featuresEN)
+          features: parseFeatures(featuresEN),
+          contact: parseContact(contactEN)
         };
       case 'FR':
       default:
         return {
           hero: parseHero(heroFR),
           about: parseAbout(aboutFR),
-          features: parseFeatures(featuresFR)
+          features: parseFeatures(featuresFR),
+          contact: parseContact(contactFR)
         };
     }
   };
@@ -439,9 +446,10 @@ function App() {
             </ul>
           </div>
           <div className="footer-contact">
-            <h4>{t.footerContact}</h4>
-            <p>{t.footerEmail}</p>
-            <p>{t.footerLocation}</p>
+            <h4>{md.contact.title}</h4>
+            {md.contact.items.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
           </div>
         </div>
         <div className="footer-bottom">

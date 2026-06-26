@@ -88,3 +88,30 @@ export function parseFeatures(md: string): FeatureContent[] {
     };
   });
 }
+
+export interface ContactContent {
+  title: string;
+  items: string[];
+}
+
+export function parseContact(md: string): ContactContent {
+  const lines = md.split('\n');
+  let title = '';
+  const items: string[] = [];
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line) continue;
+
+    if (line.startsWith('# ')) {
+      title = line.substring(2);
+    } else {
+      items.push(line);
+    }
+  }
+
+  return {
+    title,
+    items
+  };
+}
