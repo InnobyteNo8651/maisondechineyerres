@@ -44,6 +44,7 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://InnobyteNo8651.github.io/maisondechineyerres
+          NEXT_PUBLIC_BASE_PATH: /maisondechineyerres
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

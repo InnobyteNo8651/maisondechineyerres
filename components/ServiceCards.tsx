@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { services } from '@/lib/constants';
+import { getAssetPath } from '@/lib/config';
 
 export async function ServiceCards({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: 'services' });
@@ -17,7 +18,7 @@ export async function ServiceCards({ locale }: { locale: string }) {
               className="group rounded-xl shadow-lg ring-1 ring-gray-200 hover:shadow-2xl hover:ring-red-200 transition-all bg-white py-4 px-4 flex items-center gap-4"
             >
               <div className="relative shrink-0 w-16 h-16 md:w-20 md:h-20">
-                <Image src={service.image} alt={t(`${service.id}.title`)} fill className="object-contain" />
+                <Image src={getAssetPath(service.image)} alt={t(`${service.id}.title`)} fill className="object-contain" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-1">{t(`${service.id}.title`)}</h3>

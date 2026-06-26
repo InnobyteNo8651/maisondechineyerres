@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { getAssetPath } from '@/lib/config';
 
 export default async function Hero({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: 'hero' });
@@ -9,11 +10,11 @@ export default async function Hero({ locale }: { locale: string }) {
     <section
       id="hero"
       className="relative bg-cover bg-left lg:bg-center py-20 md:py-32"
-      style={{ backgroundImage: "url('/images/hero-bg-desktop.png')" }}
+      style={{ backgroundImage: `url('${getAssetPath('/images/hero-bg-desktop.png')}')` }}
     >
       {/* Logo desktop — remonte dans la navbar */}
       <Link href={`/${locale}`} className="hidden [@media(min-width:1024px)]:block absolute -top-[75px] left-16 z-50">
-        <Image src="/images/logo.png" alt="Maison de Chine" width={240} height={189} priority className="w-[120px] h-auto [@media(min-width:1270px)]:w-[240px]" />
+        <Image src={getAssetPath('/images/logo.png')} alt="Maison de Chine" width={240} height={189} priority className="w-[120px] h-auto [@media(min-width:1270px)]:w-[240px]" />
       </Link>
 
       <div className="max-w-7xl mx-auto px-8 md:px-16 flex flex-col justify-center">

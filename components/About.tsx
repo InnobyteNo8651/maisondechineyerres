@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+import { getAssetPath } from '@/lib/config';
 
 const images = [
-  { src: '/images/course.png', alt: 'Cours' },
-  { src: '/images/dragon.png', alt: 'Dragon' },
-  { src: '/images/tea.png', alt: 'Thé' },
+  { src: getAssetPath('/images/course.png'), alt: 'Cours' },
+  { src: getAssetPath('/images/dragon.png'), alt: 'Dragon' },
+  { src: getAssetPath('/images/tea.png'), alt: 'Thé' },
 ];
 
 export default async function About({ locale }: { locale: string }) {

@@ -9,3 +9,9 @@ export const siteConfig = {
     zh: '学习中文，探索中国文化，构建文化之间的纽带。',
   },
 };
+
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+export function getAssetPath(src: string): string {
+  return src.startsWith('/') ? `${basePath}${src}` : src;
+}

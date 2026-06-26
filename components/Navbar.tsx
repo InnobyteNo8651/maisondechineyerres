@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
+import { getAssetPath } from '@/lib/config';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +45,7 @@ export default function Navbar() {
           {/* Logo mobile uniquement */}
           <Link href={`/${locale}`} className="md:hidden">
             <Image
-              src="/images/logo.png"
+              src={getAssetPath('/images/logo.png')}
               alt="Maison de Chine"
               width={70}
               height={55}
