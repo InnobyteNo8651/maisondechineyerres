@@ -1,6 +1,62 @@
 {
   "home": {
-    "title": "Maison de Chine de Val d'Yerres",
-    "description": "Bienvenue"
+    "aboutTitle": "À propos de nous",
+    "aboutText": "Maison de Chine de Val d'Yerres est une association loi 1901 à but non lucratif dédiée à la promotion de la langue et de la culture chinoises."
+  },
+  "nav": {
+    "home": "Accueil",
+    "courses": "Cours",
+    "activities": "Activités",
+    "news": "Actualités",
+    "contact": "Contact",
+    "about": "À propos"
+  },
+  "hero": {
+    "titleStart": "Maison ",
+    "titleAccent": "de",
+    "titleEnd": " Chine",
+    "subtitle": "Val d'Yerres",
+    "tagline": "Langue • Culture • Partage",
+    "description": "Apprenez le chinois, découvrez la culture chinoise et créez des liens entre les cultures.",
+    "btnCourses": "Découvrir nos cours",
+    "btnActivities": "Découvrir nos activités"
+  },
+  "services": {
+    "learnMore": "En savoir plus",
+    "courses": {
+      "title": "Cours de chinois",
+      "description": "Cours pour enfants, adolescents et adultes, tous niveaux."
+    },
+    "activities": {
+      "title": "Activités culturelles",
+      "description": "Ateliers, fêtes traditionnelles, calligraphie, musique, arts martiaux..."
+    },
+    "exchange": {
+      "title": "Partage & Échanges",
+      "description": "Favoriser les échanges culturels entre la Chine et la France."
+    },
+    "events": {
+      "title": "Événements",
+      "description": "Découvrez nos prochains événements et rejoignez-nous !"
+    }
+  },
+  "about": {
+    "pageTitle": "À propos de nous",
+    "pageSubtitle": "Association loi 1901 dédiée à la promotion de la langue et de la culture chinoises",
+    "intro": "Maison de Chine de Val d'Yerres est une association à but non lucratif dédiée à la promotion de la langue chinoise et de la culture chinoise, ainsi qu'au renforcement des liens entre les cultures chinoise et française."
+  },
+  "footer": {
+    "name": "Maison de Chine",
+    "location": "de Val d'Yerres",
+    "tagline": "Langue · Culture · Partage",
+    "resources": "Ressources",
+    "courses": "Cours",
+    "activities": "Activités",
+    "events": "Événements",
+    "contact": "Contact",
+    "legal": "Légal",
+    "mentions": "Mentions légales",
+    "privacy": "Confidentialité",
+    "rights": "Tous droits réservés."
   }
 }

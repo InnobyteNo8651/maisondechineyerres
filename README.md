@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Maison de Chine de Val d'Yerres
 
-## Getting Started
+Modern Next.js website for Maison de Chine de Val d'Yerres — Chinese language courses, cultural activities, and Franco-Chinese exchanges.
 
-First, run the development server:
+## Stack
+
+- **Next.js** 16.2.9 (Turbopack, App Router)
+- **React** 19.2.4
+- **next-intl** 4.13
+- **Tailwind CSS** 4
+- **TypeScript** 5
+- **Docker**
+
+## Quick Start
+
+### Prerequisites
+- Git
+- Docker
+
+### Get Started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:InnobyteNo8651/maisondechineyerres.git
+cd maisondechineyerres
+make dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App runs at **http://localhost:3000**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+make dev       # Start dev server (rebuild)
+make start     # Start server (no rebuild, faster)
+make stop      # Stop containers
+make restart   # Restart without rebuild
+make reset     # Clean rebuild (remove volumes)
+make logs      # Follow container logs
+make install   # Install dependencies
+make lint      # Run ESLint
+make build     # Build for production
+make help      # Show all commands
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── app/
+│   ├── [locale]/
+│   │   ├── layout.tsx    # Locale layout (fonts, i18n, metadata)
+│   │   ├── page.tsx      # Home
+│   │   ├── about/
+│   │   │   └── page.tsx
+│   │   ├── courses/
+│   │   │   └── page.tsx
+│   │   ├── activities/
+│   │   │   └── page.tsx
+│   │   ├── news/
+│   │   │   └── page.tsx
+│   │   └── contact/
+│   │       └── page.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── robots.ts         # /robots.txt
+│   └── sitemap.ts        # /sitemap.xml
+├── components/
+│   ├── Navbar.tsx
+│   ├── Footer.tsx
+│   ├── Hero.tsx
+│   ├── ServiceCards.tsx
+│   └── About.tsx
+├── lib/
+│   ├── config.ts         # Site URL and metadata
+│   └── constants.ts      # Static data (services)
+├── messages/
+│   ├── fr.json
+│   └── zh.json
+├── proxy.ts              # next-intl middleware (Next.js 16)
+├── i18n.ts               # Routing and locale config
+├── next.config.ts
+├── eslint.config.mjs
+├── postcss.config.mjs
+├── Dockerfile            # Production image
+├── Dockerfile.dev        # Development image
+├── docker-compose.yml
+└── Makefile
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Languages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Code | Language | URL       |
+|------|----------|-----------|
+| `fr` | Français | `/fr/...` |
+| `zh` | 中文     | `/zh/...` |
 
-## Deploy on Vercel
+Default language: French. Automatic detection is disabled.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+# .env.local
+NEXT_PUBLIC_SITE_URL=https://maisondechine-valerres.fr
+```
+
+Next.js loads `.env.local` automatically — never commit it to git.
+
+## Production Deployment
+
+> ⚠️ Not tested yet — may contain errors.
+
+### Build and run locally
+
+```bash
+docker build -t maisondechineyerres .
+docker run -p 3000:3000 maisondechineyerres
+```
+
+### Deploy to Vercel
+
+```bash
+npm install -g vercel
+vercel
+```
+
+Vercel auto-detects Next.js and deploys with optimal settings.
+
+## Development Checklist
+
+- [ ] `make dev` works
+- [ ] App loads at http://localhost:3000
+- [ ] Hot reload works
+- [ ] `make lint` passes
+- [ ] `make build` succeeds
+- [ ] `make stop` stops containers cleanly
+
+## For Team Members
+
+After cloning:
+
+```bash
+git clone git@github.com:InnobyteNo8651/maisondechineyerres.git
+cd maisondechineyerres
+make dev
+```
+
+To add a dependency:
+
+```bash
+docker exec -it app npm install <package-name>
+```
+
+## Resources
+
+- [Next.js 16 Documentation](https://nextjs.org/docs)
+- [next-intl Documentation](https://next-intl.dev)
+- [Tailwind CSS 4 Documentation](https://tailwindcss.com/docs)
+- [TypeScript 5 Documentation](https://www.typescriptlang.org)
+- [Docker Compose Reference](https://docs.docker.com/compose)

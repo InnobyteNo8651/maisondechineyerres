@@ -1,12 +1,17 @@
-import { getTranslations } from 'next-intl/server';
+import Hero from '@/components/Hero';
+import { ServiceCards } from '@/components/ServiceCards';
+import About from '@/components/About';
 
-export default async function Home() {
-  const t = await getTranslations('home');
+type Props = { params: Promise<{ locale: string }> };
+
+export default async function Home({ params }: Props) {
+  const { locale } = await params;
 
   return (
-    <main>
-      <h1>{t('title')}</h1>
-      <p>{t('description')}</p>
-    </main>
+    <>
+      <Hero locale={locale} />
+      <ServiceCards locale={locale} />
+      <About locale={locale} />
+    </>
   );
 }

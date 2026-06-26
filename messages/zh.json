@@ -1,6 +1,69 @@
 {
   "home": {
-    "title": "瓦莱里斯中国之家",
-    "description": "欢迎"
+    "aboutTitle": "关于我们",
+    "aboutText": "埃里斯谷中国之家是一个非营利性协会，致力于推广中文和中国文化。"
+  },
+  "nav": {
+    "home": "首页",
+    "courses": "课程",
+    "activities": "活动",
+    "news": "新闻",
+    "contact": "联系",
+    "about": "关于"
+  },
+  "hero": {
+    "titleStart": "中国之家",
+    "titleAccent": "",
+    "titleEnd": "",
+    "subtitle": "瓦莱里斯",
+    "tagline": "语言 · 文化 · 分享",
+    "description": "学习中文，探索中国文化，构建文化之间的纽带。",
+    "btnCourses": "了解我们的课程",
+    "btnActivities": "了解我们的活动"
+  },
+  "services": {
+    "learnMore": "了解更多",
+    "courses": {
+      "title": "中文课程",
+      "description": "面向儿童、青少年和成人的各级别普通话课程。"
+    },
+    "activities": {
+      "title": "文化活动",
+      "description": "工作坊、传统节日、书法、音乐、武术..."
+    },
+    "exchange": {
+      "title": "交流与分享",
+      "description": "促进中法两国之间的文化交流。"
+    },
+    "events": {
+      "title": "活动与赛事",
+      "description": "了解我们即将举办的活动，欢迎参加！"
+    }
+  },
+  "about": {
+    "pageTitle": "关于我们",
+    "pageSubtitle": "促进中文学习与中国文化推广的非营利协会",
+    "intro": "瓦莱里斯中国之家是一个非营利性协会，致力于推广中文和中国文化，促进中法两国之间的文化交流与理解。",
+    "missionTitle": "我们的使命",
+    "mission1": "面向所有年龄和水平的学员教授普通话",
+    "mission2": "促进对中国文化的理解与欣赏",
+    "mission3": "创造跨文化交流与互动的空间",
+    "mission4": "举办文化活动和节日庆典",
+    "valuesTitle": "我们的价值观",
+    "valuesText": "尊重、真诚、分享与开放是我们协会的核心价值观。"
+  },
+  "footer": {
+    "name": "中国之家",
+    "location": "瓦莱里斯",
+    "tagline": "语言 · 文化 · 分享",
+    "resources": "资源",
+    "courses": "课程",
+    "activities": "活动",
+    "events": "活动",
+    "contact": "联系",
+    "legal": "法律",
+    "mentions": "法律声明",
+    "privacy": "隐私政策",
+    "rights": "版权所有。"
   }
 }
