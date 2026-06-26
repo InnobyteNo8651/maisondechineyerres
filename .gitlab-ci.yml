@@ -1,0 +1,38 @@
+stages:
+  - lint
+  - test
+  - deploy
+
+default:
+  image: node:20
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+
+before_script:
+  - npm ci --cache .npm --prefer-offline
+
+lint-job:
+  stage: lint
+  script:
+    - npm run lint
+
+typecheck-job:
+  stage: test
+  script:
+    - npx tsc --noEmit
+
+pages:
+  stage: deploy
+  script:
+    - npm run build
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
