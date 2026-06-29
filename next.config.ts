@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/maison-chine-yerres',
+  basePath: '',
   trailingSlash: true,
   experimental: {
     optimizePackageImports: ['next-intl'],
