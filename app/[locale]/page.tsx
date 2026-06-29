@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero';
-import NoticeBoard from '@/components/NoticeBoard';
 import { ServiceCards } from '@/components/ServiceCards';
 import About from '@/components/About';
 
@@ -11,7 +10,6 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <Hero locale={locale} />
-      <NoticeBoard locale={locale} />
       <ServiceCards locale={locale} />
       <About locale={locale} />
     </>

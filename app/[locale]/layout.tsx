@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { Dancing_Script } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import NoticeBoard from '@/components/NoticeBoard';
 import { siteConfig } from '@/lib/config';
 import '../globals.css';
 
@@ -102,6 +103,7 @@ export default async function LocaleLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <NoticeBoard locale={locale} />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer locale={locale} />
