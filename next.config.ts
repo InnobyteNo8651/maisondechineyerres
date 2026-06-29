@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath: '/maison-chine-yerres',
+  trailingSlash: true,
   experimental: {
     optimizePackageImports: ['next-intl'],
   },
