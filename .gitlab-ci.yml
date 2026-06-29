@@ -1,22 +1,40 @@
-image: node:20-alpine
+stages:
+  - lint
+  - test
+  - deploy
 
-cache:
-  key:
-    files:
-      - package-lock.json
-  paths:
-    - .npm/
-    - .next/cache/
+default:
+  image: node:20
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+      - .next/cache/
+
+before_script:
+  - npm ci --cache .npm --prefer-offline
+
+lint-job:
+  stage: lint
+  script:
+    - npm run lint
+
+typecheck-job:
+  stage: test
+  script:
+    - npx tsc --noEmit
 
 pages:
   stage: deploy
   script:
-    - npm ci --cache .npm --prefer-offline
     - npm run build
     - rm -rf public
     - mv out public
+    - 'echo "GitLab Pages deployed successfully! View the page here: https://ggyax.gitlab.io/maison-chine-yerres/"'
   artifacts:
     paths:
       - public
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    - main
