@@ -11,7 +11,10 @@ export default function NoticeBoard({ locale }: { locale: string }) {
   useEffect(() => {
     const isDismissed = localStorage.getItem('notice_dismissed');
     if (!isDismissed) {
-      setIsVisible(true);
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, []);
 
