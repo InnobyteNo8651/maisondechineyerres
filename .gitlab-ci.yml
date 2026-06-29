@@ -1,0 +1,22 @@
+image: node:20-alpine
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - .npm/
+    - .next/cache/
+
+pages:
+  stage: deploy
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - npm run build
+    - rm -rf public
+    - mv out public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
