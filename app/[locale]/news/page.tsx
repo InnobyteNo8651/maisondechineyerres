@@ -1,31 +1,27 @@
+import { getTranslations } from 'next-intl/server';
+
 export const metadata = {
   title: "Actualités | Maison de Chine de Val d'Yerres",
   description: 'Restez informé des dernières nouvelles et événements',
 }
 
-const articles = [
-  {
-    date: '15 Décembre 2024',
-    title: 'Fête du Nouvel An Chinois 🎊',
-    text: "Rejoignez-nous pour célébrer le Nouvel An chinois avec danses du lion, concerts, et dégustations de spécialités culinaires !",
-  },
-  {
-    date: '1er Décembre 2024',
-    title: 'Inscriptions ouvertes pour les nouveaux cours',
-    text: "Les inscriptions pour les cours de chinois de janvier sont maintenant ouvertes. Tous les niveaux et tous les âges acceptés.",
-  },
-  {
-    date: '15 Novembre 2024',
-    title: 'Atelier de calligraphie spécial',
-    text: "Un maître calligraphe nous visite ! Ateliers gratuits pour tous les niveaux.",
-  },
-]
+type ArticleItem = {
+  date: string;
+  title: string;
+  text: string;
+};
 
-export default function NewsPage() {
+type Props = { params: Promise<{ locale: string }> };
+
+export default async function NewsPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'news' });
+  const articles = t.raw('articles') as ArticleItem[];
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <h1 className="text-4xl md:text-5xl font-bold text-brand mb-4">Actualités</h1>
-      <p className="text-xl text-gray-600 mb-12">Les dernières nouvelles de la Maison de Chine</p>
+      <h1 className="text-4xl md:text-5xl font-bold text-brand mb-4">{t('pageTitle')}</h1>
+      <p className="text-xl text-gray-600 mb-12">{t('pageSubtitle')}</p>
 
       <div className="space-y-8">
         {articles.map((article, i) => (

@@ -58,5 +58,87 @@
     "mentions": "Mentions légales",
     "privacy": "Confidentialité",
     "rights": "Tous droits réservés."
+  },
+  "notice": {
+    "title": "📢 Rentrée de Septembre & Forum des Associations",
+    "text": "Retrouvez-nous au Forum des Associations de Yerres le samedi 5 septembre pour poser vos questions. Les pré-inscriptions en ligne pour l'année 2026-2027 sont dès à présent ouvertes via le formulaire Google !",
+    "btnRegister": "Se pré-inscrire",
+    "btnContact": "Poser une question"
+  },
+  "courses": {
+    "pageTitle": "Cours de Chinois",
+    "pageSubtitle": "Des cours adaptés à tous les âges et tous les niveaux",
+    "list": [
+      {
+        "title": "Éveil au Chinois",
+        "level": "3–5 ans",
+        "description": "Initiation ludique et sensorielle à la langue et la culture chinoise pour les plus petits (jeux, chansons, contes)."
+      },
+      {
+        "title": "Cours Enfant (Débutant)",
+        "level": "6–8 ans",
+        "description": "Apprentissage structuré et interactif des bases du chinois (pinyin, vocabulaire simple, écriture)."
+      },
+      {
+        "title": "Cours Enfant (Intermédiaire & HSK)",
+        "level": "9–11 ans",
+        "description": "Consolidation des acquis, préparation à la certification HSK et approfondissement de la culture chinoise."
+      },
+      {
+        "title": "Cours Adolescents",
+        "level": "12–18 ans",
+        "description": "Pratique de la conversation, étude de textes et préparation aux examens de chinois."
+      },
+      {
+        "title": "Cours Adultes",
+        "level": "Tous niveaux",
+        "description": "Apprentissage à votre rythme, de l'initiation à la conversation courante ou professionnelle."
+      }
+    ],
+    "ctaTitle": "Envie de nous rejoindre ?",
+    "ctaText": "Les pré-inscriptions pour la rentrée de septembre sont ouvertes ! Remplissez le formulaire en ligne ou contactez-nous pour toute question.",
+    "ctaBtnRegister": "Pré-inscription en ligne",
+    "ctaBtnContact": "Nous contacter"
+  },
+  "news": {
+    "pageTitle": "Actualités",
+    "pageSubtitle": "Les dernières nouvelles de la Maison de Chine",
+    "articles": [
+      {
+        "date": "Samedi 5 Septembre 2026",
+        "title": "Présence au Forum des Associations de Yerres 🏛️",
+        "text": "Venez nous rencontrer sur notre stand lors du Forum des Associations de Yerres. L'occasion idéale pour échanger avec nos enseignants, découvrir nos manuels, et finaliser vos inscriptions pour l'année scolaire 2026-2027."
+      },
+      {
+        "date": "15 Décembre 2024",
+        "title": "Fête du Nouvel An Chinois 🎊",
+        "text": "Rejoignez-nous pour célébrer le Nouvel An chinois avec danses du lion, concerts, et dégustations de spécialités culinaires !"
+      },
+      {
+        "date": "1er Décembre 2024",
+        "title": "Inscriptions ouvertes pour les nouveaux cours",
+        "text": "Les inscriptions pour les cours de chinois de janvier sont maintenant ouvertes. Tous les niveaux et tous les âges acceptés."
+      },
+      {
+        "date": "15 Novembre 2024",
+        "title": "Atelier de calligraphie spécial",
+        "text": "Un maître calligraphe nous visite ! Ateliers gratuits pour tous les niveaux."
+      }
+    ]
+  },
+  "activities": {
+    "pageTitle": "Activités Culturelles",
+    "pageSubtitle": "Explorez la richesse de la culture chinoise à travers diverses activités",
+    "list": [
+      { "title": "Ateliers de calligraphie", "description": "Découvrez l'art millénaire de la calligraphie chinoise", "icon": "🖌️" },
+      { "title": "Musique traditionnelle", "description": "Apprenez les instruments traditionnels chinois", "icon": "🎵" },
+      { "title": "Arts martiaux", "description": "Tai Chi, Kung Fu et autres disciplines", "icon": "🥋" },
+      { "title": "Fêtes traditionnelles", "description": "Célébrez le Nouvel An chinois et autres festivités", "icon": "🎊" },
+      { "title": "Cuisine chinoise", "description": "Ateliers de cuisine et dégustations", "icon": "🥢" },
+      { "title": "Échanges culturels", "description": "Rencontres et débats interculturels", "icon": "🌏" }
+    ],
+    "ctaTitle": "Prochains événements",
+    "ctaText": "Retrouvez-nous le samedi 5 septembre au Forum des Associations de Yerres pour notre première rencontre et consultation de la rentrée !",
+    "ctaBtn": "Voir les actualités"
   }
 }
